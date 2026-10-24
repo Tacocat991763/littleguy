@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-const SPEED = 500.0
+const SPEED = 400.0
 const JUMP_VELOCITY = -800.0
 
 
@@ -44,3 +44,8 @@ func handle_legs_animations():
 	else:
 		# Player is stationary on the ground
 		legs_sprite.play("stand")
+
+func _unhandled_key_input(event: InputEvent) -> void:
+	if event is InputEventKey and event.pressed and not event.echo:
+		if event.keycode == KEY_R:
+			get_tree().reload_current_scene()
